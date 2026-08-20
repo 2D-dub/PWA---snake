@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Snake Game</title>
+    <link rel="manifest" href="./manifest.json">
+
+<meta name="theme-color" content="#22c55e">
+
+<link
+    rel="icon"
+    type="image/png"
+    href="./icon-512.png">
 
     <style>
         * {
@@ -1123,7 +1131,36 @@
         // =========================================
 
         startGame();
+// =========================================
+// REGISTRAR SERVICE WORKER
+// =========================================
 
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(registration => {
+
+                console.log(
+                    "Service Worker registrado correctamente:",
+                    registration.scope
+                );
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Error registrando Service Worker:",
+                    error
+                );
+
+            });
+
+    });
+
+}
     </script>
 
 </body>
